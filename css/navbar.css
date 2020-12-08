@@ -14,6 +14,7 @@
   /* padding: 5px 0px; */
   height: 45px;
   line-height: 45px;
+  font-weight: bold;
 }
 .nav_link {
   display: inline-block;
