@@ -14,8 +14,8 @@
   height: 45px;
   line-height: 45px;
   color: #ffffff;
-  /* position: sticky; */
-   position: -webkit-sticky;
+  position: sticky;
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
 }
@@ -23,7 +23,7 @@
 .logo a {
   display: block;
   font-weight: bold;
-  /* font-size: 20px; */
+  font-size: 20px;
   text-decoration: none;
 }
 .main_menu ul li {
@@ -60,7 +60,7 @@
 }
 .left_section .main_menu {
   display: inline-block;
-  /* position: relative; */
+  position: relative;
 }
 .main_menu {
   position: relative;
@@ -68,21 +68,24 @@
 .main_menu .submenu {
   visibility: hidden;
   opacity: 0;
+  margin-top: -2px;
   position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
+  display: block;
   transform: translateY(-2em);
-  z-index: -1;
+  z-index: -1 !important;
   transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s,
     z-index 0s linear 0.01s;
 }
 .main_menu:hover .submenu {
   visibility: visible;
   opacity: 1;
-  z-index: 1;
+  z-index: 1 !important;
   transform: translateY(0%);
   transition-delay: 0s, 0s, 0.4s;
+  display: block;
 }
 .right_section .notify .nav_icon {
   margin-right: 5px;
@@ -92,7 +95,7 @@
 }
 .right_section .username .mm_menu {
   height: 38px;
-  line-height: 38px;
+  line-height: 42px;
   width: 120px;
   background-color: #3498db;
   text-align: center;
@@ -101,14 +104,17 @@
 }
 
 .right_section .submenu li {
+  margin-top: -2px;
   color: #ffffff;
   background-color: #34495e;
   width: 120px;
   height: 40px;
   line-height: 40px;
   list-style: none;
-  text-align: center;
+  text-align: left;
+  padding: 0px;
 }
+
 .right_section .username a {
   color: #ffffff;
   text-decoration: none;
@@ -125,14 +131,14 @@
   left: 0;
   width: 100%;
   transform: translateY(-2em);
-  z-index: -1;
+  z-index: -1 !important;
   transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s,
     z-index 0s linear 0.01s;
 }
 .right_section .username:hover .submenu {
   visibility: visible;
   opacity: 1;
-  z-index: 1;
+  z-index: 1 !important;
   transform: translateY(0%);
   transition-delay: 0s, 0s, 0.4s;
 }
