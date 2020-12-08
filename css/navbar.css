@@ -11,14 +11,20 @@
 }
 .logo {
   margin-right: auto;
-  padding: 5px 0px;
+  /* padding: 5px 0px; */
+  height: 45px;
+  line-height: 45px;
 }
 .nav_link {
   display: inline-block;
 }
 .nav_link .link_a {
   color: white;
-  padding: 5px 20px;
+  /* padding: 5px 20px; */
+  text-align: center;
+  width: 80px;
+  height: 45px;
+  line-height: 45px;
   /* border: 1px solid #ffffff; */
   text-decoration: none;
   display: block;

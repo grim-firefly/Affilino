@@ -1,0 +1,148 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.logo {
+  width: 120px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+}
+.navbar {
+  background-color: #34495e;
+  height: 45px;
+  line-height: 45px;
+  color: #ffffff;
+  /* position: sticky; */
+   position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.logo a {
+  display: block;
+  font-weight: bold;
+  /* font-size: 20px; */
+  text-decoration: none;
+}
+.main_menu ul li {
+  width: 120px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  list-style: none;
+
+  background-color: #34495e;
+}
+
+.main_menu ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+.main_menu ul li a:hover {
+  background-color: #486684;
+}
+.main_menu .mm_menu {
+  height: 45px;
+  line-height: 45px;
+  width: 120px;
+  text-align: center;
+}
+.main_menu .mm_menu a:hover {
+  background-color: #486684;
+}
+.main_menu a {
+  color: #ffffff;
+  display: block;
+  text-decoration: none;
+}
+.left_section .main_menu {
+  display: inline-block;
+  /* position: relative; */
+}
+.main_menu {
+  position: relative;
+}
+.main_menu .submenu {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-2em);
+  z-index: -1;
+  transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s,
+    z-index 0s linear 0.01s;
+}
+.main_menu:hover .submenu {
+  visibility: visible;
+  opacity: 1;
+  z-index: 1;
+  transform: translateY(0%);
+  transition-delay: 0s, 0s, 0.4s;
+}
+.right_section .notify .nav_icon {
+  margin-right: 5px;
+}
+.right_section div {
+  display: inline-block;
+}
+.right_section .username .mm_menu {
+  height: 38px;
+  line-height: 38px;
+  width: 120px;
+  background-color: #3498db;
+  text-align: center;
+  border-radius: 30px;
+  position: relative;
+}
+
+.right_section .submenu li {
+  color: #ffffff;
+  background-color: #34495e;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  list-style: none;
+  text-align: center;
+}
+.right_section .username a {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+}
+.right_section .username {
+  position: relative;
+}
+.right_section .submenu {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-2em);
+  z-index: -1;
+  transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s,
+    z-index 0s linear 0.01s;
+}
+.right_section .username:hover .submenu {
+  visibility: visible;
+  opacity: 1;
+  z-index: 1;
+  transform: translateY(0%);
+  transition-delay: 0s, 0s, 0.4s;
+}
+.right_section .username .mm_menu:hover {
+  background-color: #486684;
+}
+.right_section .username .submenu li a:hover {
+  background-color: #486684;
+}
+.nav_icon {
+  font-size: 20px;
+  color: #ffffff;
+}
