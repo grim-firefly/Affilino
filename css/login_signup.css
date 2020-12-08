@@ -1,0 +1,144 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI";
+  box-sizing: border-box;
+}
+body {
+  background: linear-gradient(to right, #3399ff 0%, #ff00ff 100%);
+}
+.all_header {
+  font-weight: bold;
+  padding-top: 20px;
+  font-size: 30px;
+}
+.sign_up {
+  width: 500px;
+  background-color: #ffffff;
+  text-align: center;
+  margin: auto;
+  border-radius: 10px;
+}
+.sign_up form {
+  width: 400px;
+  margin: auto;
+  /* text-align: center; */
+  position: relative;
+}
+form .input-box {
+  width: 400px;
+  /* display: block; */
+  margin: 15px 0px;
+  padding: 10px 15px 10px 50px;
+  background-color: #ffffff;
+  font-size: 15px;
+  border: none;
+  outline: none;
+  box-shadow: 3px 3px 15px #a8a8a8;
+  transition: box-shadow 0.5s;
+}
+form input:focus {
+  box-shadow: 7px 7px 25px #a8a8a8;
+  border-bottom: 2px solid #3498db;
+}
+
+.icons_signup {
+  color: gray;
+  font-size: 25px;
+  position: absolute;
+  left: 15px;
+  margin-top: 25px;
+  /* top: 25px; */
+  /* top: 0%; */
+  /* margin-top: -60px; */
+}
+/* .toggle_option div {
+  display: inline-block;
+} */
+.toggle_option a {
+  text-decoration: none;
+}
+.create_new_account {
+  text-align: left;
+  /* margin-top: 20px; */
+  text-decoration: none;
+}
+.forget_password {
+  text-align: right;
+  margin-top:-24px;
+  text-decoration: none;
+}
+.already_account {
+  text-align: right;
+  text-decoration: none;
+}
+.already_account a {
+  text-decoration: none;
+}
+
+.sign-up-btn {
+  width: 400px;
+  padding: 5px 25px;
+  margin: 15px 0px;
+  /* background-color: #3498db; */
+  background: linear-gradient(to right, #3399ff 0%, #ff00ff 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+.sign-up-btn:hover {
+  transition-duration: 400ms;
+  background: linear-gradient(to right, #ff00ff 0%, #3399ff 100%);
+  box-shadow: 5px 5px 15px #a8a8a8;
+}
+.alternative_signup {
+  /* padding: 0px 0px; */
+  margin-top: -10px;
+  height: 60px;
+  line-height: 60px;
+  /* display: inline-block; */
+  /* line-height: 100px; */
+}
+.others_method {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  /* background-color: #000000; */
+  border-radius: 50%;
+}
+.alternative_signup .facebook {
+  background-color: #0d8bf1;
+}
+.alternative_signup .facebook:hover {
+  transition-duration: 400ms;
+  background: linear-gradient(to right, #ff00ff 0%, #3399ff 100%);
+  box-shadow: 5px 5px 15px #a8a8a8;
+}
+.alternative_signup .twitter {
+  background-color: #1da1f2;
+}
+.alternative_signup .twitter:hover {
+  transition-duration: 400ms;
+  background: linear-gradient(to right, #ff00ff 0%, #3399ff 100%);
+  box-shadow: 5px 5px 15px #a8a8a8;
+}
+.alternative_signup .google {
+  background-color: #ea4335;
+}
+.alternative_signup .google:hover {
+  transition-duration: 400ms;
+  background: linear-gradient(to right, #ff00ff 0%, #3399ff 100%);
+  box-shadow: 5px 5px 15px #a8a8a8;
+}
+.others_method a {
+  display: block;
+  text-decoration: none;
+  color: #ffffff;
+  text-align: center;
+}
+.sign_up .alternative_signup .others_method .api_method {
+  font-size: 20px;
+  margin-top: 10px;
+}

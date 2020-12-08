@@ -1,0 +1,44 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* nav bar design for unlogged or un signed up user */
+.nav_bar {
+  background-color: #34495e;
+  color: white;
+}
+.logo {
+  margin-right: auto;
+  padding: 5px 0px;
+}
+.nav_link {
+  display: inline-block;
+}
+.nav_link .link_a {
+  color: white;
+  padding: 5px 20px;
+  /* border: 1px solid #ffffff; */
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+  margin-right: -4px;
+}
+.nav_link .colorful_signup {
+  color: white;
+  padding: 3px 15px;
+  /* border: 1px solid #ffffff; */
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+  margin-right: -4px;
+}
+.nav_link a:hover {
+  background-color: #486684;
+  transition-delay: 0.1s;
+}
+.colorful_signup {
+  background-color: #3498db;
+  border-radius: 20px;
+}
