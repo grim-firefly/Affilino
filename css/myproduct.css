@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* product heading */
+.p-heading-title {
+  font-size: 27px;
+  font-weight: bolder;
+}
+.new_product_add {
+  text-align: right;
+  cursor: pointer;
+  margin-top: -32px;
+}
+.new_product_add a {
+  color: #ffffff;
+  background-color: #34495e;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  /* display: block; */
+  text-decoration: none;
+}
+
+.new_product_add a:hover {
+  background-color: #486684;
+  transition-delay: 0.1s;
+}
+/* straight-line start here  */
+.straigt-line{
+    border-bottom: 1px solid #cccccc;
+}
+.s_menu_time,.date_picker_r{
+    width: 30%;
+    text-align: center;
+}
+.s_menu_time{
+    /* background-color: #cccccc; */
+}
+.time_selection{
+    background-color: #cccccc;
+    padding: 10px 20px;
+}
