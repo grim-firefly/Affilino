@@ -1,19 +1,25 @@
+<?php
+include 'lib/function.php';
+if (!isset($_SESSION['username'])) {
+    header('location:index.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>My Product | Affilino</title>
     <!-- bootstrap css files her -->
-    <link rel="stylesheet" href="../css/bootstrap.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
     <!-- jquery css -->
     <!-- css files here -->
-    <link rel="stylesheet" href="../css/dropdown.css">
-    <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/myproduct.css">
+    <link rel="stylesheet" href="css/dropdown.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/myproduct.css">
     <!-- font awesome -->
-    <link rel="stylesheet" href="../css/fontawesome.min.css" />
+    <link rel="stylesheet" href="css/fontawesome.min.css" />
 </head>
 
 <body>
@@ -28,8 +34,8 @@
                 <div class="main_menu">
                     <div class="mm_menu"><a href="#">MarketPlace <i class="fas fa-angle-down nav_icon"></i></a></div>
                     <ul class="submenu">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Top product</a></li>
+                        <li><a href="home.php">Home</a></li>
+                        <li><a href="dashboard.php">Top product</a></li>
                         <li><a href="#">Catagory</a></li>
 
                     </ul>
@@ -38,19 +44,19 @@
                 <div class="main_menu">
                     <div class="mm_menu"><a href="#">Vendor <i class="fas fa-angle-down nav_icon"></i></a></div>
                     <ul class="submenu">
-                        <li><a href="#">Dashboard</a></li>
-                        <li><a href="#">My Product</a></li>
-                        <li><a href="#">Customer</a></li>
+                        <li><a href="Sales_Dashboard.php">Dashboard</a></li>
+                        <li><a href="MyProduct.php">My Product</a></li>
+                        <li><a href="customer.php">Customer</a></li>
 
                     </ul>
 
                 </div>
                 <div class="main_menu">
-                    <div class="mm_menu"> <a href="#">Affiliate <i class="fas fa-angle-down nav_icon"></i></a></div>
+                    <div class="mm_menu"> <a href="home.php">Affiliate <i class="fas fa-angle-down nav_icon"></i></a></div>
                     <ul class="submenu">
-                        <li><a href="#">Dashboard</a></li>
+                        <li><a href="Sales_Dashboard.php">Dashboard</a></li>
                         <li><a href="#">Offers</a></li>
-                        <li><a href="#">Launch Date</a></li>
+                        <li><a href="launch_date.php">Launch Date</a></li>
                     </ul>
 
                 </div>
@@ -58,13 +64,14 @@
             <div class="right_section">
                 <div class="notify"> <a href="#"><i class="fas fa-bell nav_icon"></i></a></div>
                 <div class="username">
-                    <div class="mm_menu"><a href="#">Firefly <i class="fas fa-angle-down nav_icon"></i></a></div>
+                    <div class="mm_menu"><a href="#"><?php echo $_SESSION['username']; ?> <i class="fas fa-angle-down nav_icon"></i></a></div>
+
                     <ul class="submenu">
                         <li><a class="pl-2" href="#"><i class="fas fa-heart"></i> Favourite</a></li>
                         <li><a class="pl-2" href="#"><i class="fas fa-history"></i> Histroy</a></li>
                         <li><a class="pl-2" href="#"><i class="fas fa-wallet"></i> Wallet</a></li>
                         <li><a class="pl-2" href="#"><i class="fas fa-user-tie"></i> My Account</a></li>
-                        <li><a class="pl-2" href="#"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+                        <li><a class="pl-2" href="logout.php?isLogout=1"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
                     </ul>
 
                 </div>
@@ -287,10 +294,10 @@
         </div>
     </footer>
     <!-- bootstrap js files here -->
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/popper.min.js"></script>
-    <script src="../js/font_awesome.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/font_awesome.min.js"></script>
 
 
 </body>

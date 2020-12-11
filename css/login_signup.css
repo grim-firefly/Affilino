@@ -48,13 +48,9 @@ form input:focus {
   position: absolute;
   left: 15px;
   margin-top: 25px;
-  /* top: 25px; */
-  /* top: 0%; */
-  /* margin-top: -60px; */
+
 }
-/* .toggle_option div {
-  display: inline-block;
-} */
+
 .toggle_option a {
   text-decoration: none;
 }
@@ -86,6 +82,7 @@ form input:focus {
   border: none;
   border-radius: 25px;
   cursor: pointer;
+  outline: none;
 }
 .sign-up-btn:hover {
   transition-duration: 400ms;
