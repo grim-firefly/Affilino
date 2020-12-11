@@ -40,7 +40,7 @@ include 'lib/function.php';
 
             <div class="toggle_option">
                 <div class="create_new_account"><a href="Signup.php">Create a new account?</a></div>
-                <div class="forget_password"><a href="forget_password.php">Forgot Password?</a></div>
+                <div class="forget_password"><a href="forget.php">Forgot Password?</a></div>
             </div>
             <input type="submit" class="sign-up-btn" name="login-btn" value="Login" />
 

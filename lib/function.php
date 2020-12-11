@@ -13,8 +13,8 @@ function signup()
     if (isset($_POST['signup-btn'])) {
         $username = $_POST['username'];
         $email = $_POST['useremail'];
-        $pass = $_POST['password'];
-        $cpass = $_POST['cpassword'];
+        $pass = md5($_POST['password']);
+        $cpass = md5($_POST['cpassword']);
         if (empty($username) || empty($email) || empty($pass) || empty($cpass)) {
             echo '<div style="margin-bottom:0px; margin-top:-5px" class="alert alert-danger" role="alert">No field can\'t be empty!</div>';
         } else if ($pass != $cpass) {
@@ -45,7 +45,7 @@ function login()
         // unset($_SESSION['massage']);
         $username = $_POST['username'];
         $email = $_POST['username'];
-        $pass = $_POST['password'];
+        $pass = md5($_POST['password']);
         if (empty($username) || empty($pass)) {
             echo '<div style="margin-bottom:0px; margin-top:-5px" class="alert alert-danger" role="alert">No field can\'t be empty!</div>';
         } else {
@@ -71,9 +71,9 @@ function login()
 }
 
 
-function logout (){
-    if(isset($_POST['logout']))
-    {
-       echo "Work";
+function logout()
+{
+    if (isset($_POST['logout'])) {
+        echo "Work";
     }
 }

@@ -5,7 +5,8 @@
   box-sizing: border-box;
 }
 body {
-  background: linear-gradient(to right, #3399ff 0%, #ff00ff 100%);
+  /* background: linear-gradient(to right, #3399ff 0%, #ff00ff 100%); */
+  background: #ffffff;
 }
 .all_header {
   font-weight: bold;
@@ -18,6 +19,8 @@ body {
   text-align: center;
   margin: auto;
   border-radius: 10px;
+  /* border: 1px solid ; */
+  box-shadow: 0 0 20px #cccccc;
 }
 .sign_up form {
   width: 400px;
