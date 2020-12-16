@@ -35,7 +35,7 @@ if (!isset($_SESSION['username'])) {
                     <ul class="submenu">
                         <li><a href="home.php">Home</a></li>
                         <li><a href="dashboard.php">Top product</a></li>
-                        <li><a href="#">Catagory</a></li>
+                        <li><a href="category.php">Catagory</a></li>
 
                     </ul>
 
