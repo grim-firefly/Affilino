@@ -69,11 +69,3 @@ function login()
         }
     }
 }
-
-
-function logout()
-{
-    if (isset($_POST['logout'])) {
-        echo "Work";
-    }
-}
