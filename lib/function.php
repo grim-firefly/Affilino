@@ -81,3 +81,37 @@ function login()
         }
     }
 }
+
+
+
+function addProduct($username)
+{
+    if (isset($_POST['addProduct'])) {
+        $Pname = $_POST['Pname'];
+
+        $pImg_name = $_FILES['pImg']['name'];
+        $pImg_tmp = $_FILES['pImg']['tmp_name'];
+
+        $dImg_name = $_FILES['dImg']['name'];
+        $dImg_tmp = $_FILES['dImg']['tmp_name'];
+
+        $pCat = $_POST['pCat'];
+        $pPrice = $_POST['pPrice'];
+        $pdiscount = $_POST['pdiscount'];
+        $pavailable = $_POST['pavailable'];
+
+        if (empty($Pname) || empty($pImg_name) || empty($dImg_name) ||  empty($pCat) || empty($pPrice) || empty($pdiscount) || empty($pavailable)) {
+            echo '<div style="margin-bottom:0px; margin-top:-5px" class="alert alert-warning" role="alert">No Field can\'t be Empty!</div>';
+
+            return;
+        }
+        $pid =  uniqid();
+        $sql = " INSERT INTO productlist( pid, username, pname, pimg, dimg, pcat, price, available, pdis) VALUES ('$pid','$username', '$Pname', '$pImg_name', '$dImg_name', '$pCat', '$pPrice', '$pavailable', '$pdiscount'  ) ";
+        $result = mysqli_query($GLOBALS['conn'], $sql);
+        if ($result) {
+            move_uploaded_file($pImg_tmp, "productImg/Pimg/" . $pImg_name);
+            move_uploaded_file($dImg_tmp, "productImg/Dimg/" . $dImg_name);
+            echo '<script> location.replace("MyProduct.php"); </script>';
+        }
+    }
+}

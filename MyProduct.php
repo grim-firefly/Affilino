@@ -1,6 +1,7 @@
 <?php
 include 'lib/function.php';
-if (!isset($_SESSION['username'])) {
+$username = $_SESSION['username'];
+if (!isset($username)) {
     header('location:index.php');
 }
 ?>
@@ -63,7 +64,7 @@ if (!isset($_SESSION['username'])) {
             <div class="right_section">
                 <div class="notify"> <a href="#"><i class="fas fa-bell nav_icon"></i></a></div>
                 <div class="username">
-                    <div class="mm_menu"><a href="#"><?php echo $_SESSION['username']; ?> <i class="fas fa-angle-down nav_icon"></i></a></div>
+                    <div class="mm_menu"><a href="#"><?php echo $username; ?> <i class="fas fa-angle-down nav_icon"></i></a></div>
 
                     <ul class="submenu">
                         <li><a class="pl-2" href="#"><i class="fas fa-heart"></i> Favourite</a></li>
@@ -83,7 +84,7 @@ if (!isset($_SESSION['username'])) {
         <div class="product-heading">
 
             <div class="p-heading-title ">My Products</div>
-            <div class="new_product_add"><a href="#"><i class="fas fa-plus-circle"></i> New Product</a></div>
+            <div class="new_product_add"><a href="newproduct.php"><i class="fas fa-plus-circle"></i> New Product</a></div>
         </div>
     </div>
     <!-- straight line -->
@@ -102,108 +103,52 @@ if (!isset($_SESSION['username'])) {
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Product</th>
-                    <th scope="col">Visitors/Views</th>
-                    <th scope="col">Clicks</th>
-                    <th scope="col">Sales</th>
-                    <th scope="col">Conv. Rate</th>
-                    <th scope="col">Visitor Value</th>
-                    <th scope="col">Custome Value</th>
-                    <th scope="col">Total Revenue</th>
+                    <th scope="col">Product Image</th>
+                    <th scope="col">Product Category</th>
+                    <th scope="col">Regular Price</th>
+                    <th scope="col">Discount</th>
+                    <th scope="col">Discounted Price</th>
+                    <th scope="col">Available</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td> <a style=" text-decoration:none; " href="#">Fossil ME3064 men's Watch</a> </td>
-                    <td>0/0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0%</td>
-                    <td>$0.00</td>
-                    <td>$0.00</td>
-                    <td>$0.00</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td> <a style=" text-decoration:none; " href="#">Intel® Core™ i9-10850K Processor</a> </td>
-                    <td>0/0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0%</td>
-                    <td>$0.00</td>
-                    <td>$0.00</td>
-                    <td>$0.00</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td> <a style=" text-decoration:none; " href="#">MSI Optix MAG322CQRV 32" 144Hz QHD(2K) LED Curved
-                            Monitor</a> </td>
-                    <td>0/0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0%</td>
-                    <td>$0.00</td>
-                    <td>$0.00</td>
-                    <td>$0.00</td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td> <a style=" text-decoration:none; " href="#">Razer Mamba HyperFlux + Firefly HyperFlux</a> </td>
-                    <td>0/0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0%</td>
-                    <td>$0.00</td>
-                    <td>$0.00</td>
-                    <td>$0.00</td>
-                </tr>
-                <tr>
-                    <th scope="row">5</th>
-                    <td> <a style=" text-decoration:none; " href="#">Beats Solo3 Wireless Rose Gold</a> </td>
-                    <td>0/0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0%</td>
-                    <td>$0.00</td>
-                    <td>$0.00</td>
-                    <td>$0.00</td>
-                </tr>
-                <tr>
-                    <th scope="row">6</th>
-                    <td> <a style=" text-decoration:none; " href="#">WIN Pro 10 64bit Eng INTL 1PK DSP OEM DVD</a>
-                    </td>
-                    <td>0/0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0%</td>
-                    <td>$0.00</td>
-                    <td>$0.00</td>
-                    <td>$0.00</td>
-                </tr>
-                <tr>
-                    <th scope="row">7</th>
-                    <td> <a style=" text-decoration:none; " href="#">Corsair K68 RGB Gaming Keyboard Cerry MX-Red</a>
-                    </td>
-                    <td>0/0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0%</td>
-                    <td>$0.00</td>
-                    <td>$0.00</td>
-                    <td>$0.00</td>
-                </tr>
-                <tr>
-                    <th scope="row">8</th>
-                    <td> <a style=" text-decoration:none; " href="#">A4Tech Bloody Q80 NEON X'GLIDE Gaming Mouse</a>
-                    </td>
-                    <td>0/0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0%</td>
-                    <td>$0.00</td>
-                    <td>$0.00</td>
-                    <td>$0.00</td>
-                </tr>
+
+                <?php
+                $host = 'localhost';
+                $user = 'root';
+                $host_pass = '';
+                $db_name = 'affilino';
+                $conn = new mysqli($host, $user, $host_pass, $db_name);
+
+                $sql = "SELECT * FROM productlist WHERE username = '$username'";
+                $result = mysqli_query($conn, $sql);
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $pid = $row['pid'];
+                        $pname = $row['pname'];
+                        $pimg = $row['pimg'];
+                        $pcat = $row['pcat'];
+                        $price = $row['price'];
+                        $pdis = $row['pdis'];
+                        $dprice = $price - ($price * $pdis / 100);
+                        $pA = $row['available'];
+                ?>
+                        <tr>
+                            <th scope="row"> <?php echo $pid; ?> </th>
+                            <td> <a style=" text-decoration:none; " href="#"><?php echo $pname; ?></a> </td>
+                            <td><img src="productImg/Pimg/<?php echo $pimg; ?>" width="30px" height="30px" alt=""></td>
+                            <td><?php echo $pcat; ?></td>
+                            <td><?php echo $price; ?></td>
+                            <td><?php echo $pdis; ?>%</td>
+                            <td><?php echo $dprice; ?></td>
+                            <td><?php echo $pA; ?></td>
+                        </tr>
+
+                <?php
+                    }
+                }
+                ?>
+
             </tbody>
         </table>
     </div>
