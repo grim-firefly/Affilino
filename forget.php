@@ -12,7 +12,7 @@ include 'lib/function.php';
     <link rel="stylesheet" href="css/bootstrap.css" />
     <!-- css files here -->
     <link rel="stylesheet" href="css/login_signup.css" />
-    <!-- font awesome -->
+    <!-- font Awesome -->
     <link rel="stylesheet" href="css/fontawesome.min.css" />
 </head>
 

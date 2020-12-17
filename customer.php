@@ -28,7 +28,7 @@ if (!isset($_SESSION['username'])) {
         <div class="container">
             <div class="left_section ">
                 <div class="logo main_menu">
-                    <a href="home.php">Affilno</a>
+                    <a href="home.php">Affilino</a>
                 </div>
                 <div class="main_menu">
                     <div class="mm_menu"><a href="#">MarketPlace <i class="fas fa-angle-down nav_icon"></i></a></div>

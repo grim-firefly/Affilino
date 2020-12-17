@@ -29,7 +29,7 @@ if (!isset($_SESSION['username'])) {
     <div class="container">
       <div class="left_section ">
         <div class="logo main_menu">
-          <a href="home.php">Affilno</a>
+          <a href="home.php">Affilino</a>
         </div>
         <div class="main_menu">
           <div class="mm_menu"><a href="#">MarketPlace <i class="fas fa-angle-down nav_icon"></i></a></div>
@@ -65,13 +65,13 @@ if (!isset($_SESSION['username'])) {
         <div class="notify"> <a href="#"><i class="fas fa-bell nav_icon"></i></a></div>
         <div class="username">
           <div class="mm_menu"><a href="#"><?php echo $_SESSION['username']; ?> <i class="fas fa-angle-down nav_icon"></i></a></div>
-          
+
           <ul class="submenu">
             <li><a class="pl-2" href="#"><i class="fas fa-heart"></i> Favourite</a></li>
             <li><a class="pl-2" href="#"><i class="fas fa-history"></i> Histroy</a></li>
             <li><a class="pl-2" href="#"><i class="fas fa-wallet"></i> Wallet</a></li>
             <li><a class="pl-2" href="#"><i class="fas fa-user-tie"></i> My Account</a></li>
-            <li><a class="pl-2"  href="logout.php?isLogout=1"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+            <li><a class="pl-2" href="logout.php?isLogout=1"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
           </ul>
 
         </div>
