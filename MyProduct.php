@@ -134,7 +134,7 @@ if (!isset($username)) {
                         $pA = $row['available'];
                 ?>
                         <tr>
-                            <th scope="row"> <?php echo $pid; ?> </th>
+                            <td scope="row"> <?php echo $pid; ?> </td>
                             <td> <a style=" text-decoration:none; " href="#"><?php echo $pname; ?></a> </td>
                             <td><img src="productImg/Pimg/<?php echo $pimg; ?>" width="30px" height="30px" alt=""></td>
                             <td><?php echo $pcat; ?></td>
@@ -146,7 +146,7 @@ if (!isset($username)) {
 
                 <?php
                     }
-                }
+                } else echo "<tr><td colspan='8' align='center'><h2> Product Not found </h2></td></tr>";
                 ?>
 
             </tbody>
