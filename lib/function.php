@@ -14,6 +14,7 @@ function signup()
         $email = $_POST['useremail'];
         $pass = $_POST['password'];
         $cpass = $_POST['cpassword'];
+        $role = $_POST['role'];
         if (empty($username) || empty($email) || empty($pass) || empty($cpass)) {
             echo '<div style="margin-bottom:0px; margin-top:-5px" class="alert alert-danger" role="alert">No field can\'t be empty!</div>';
         } else if ($pass != $cpass) {
@@ -29,7 +30,7 @@ function signup()
             } else {
                 // echo "$pass";
                 $e_pass = password_hash($pass, PASSWORD_BCRYPT);
-                $qinsert = "INSERT INTO `user`(`username`, `password`, `email`) VALUES ('$username','$e_pass','$email')";
+                $qinsert = "INSERT INTO `user`(`username`, `password`, `email`,`role`) VALUES ('$username','$e_pass','$email','$role')";
                 mysqli_query($conn, $qinsert);
                 $_SESSION['massage'] = '<div style="margin-bottom:0px; margin-top:-5px" class="alert alert-success" role="alert">Successfully Registerd!</div>';
                 header('location:login.php');
@@ -59,6 +60,8 @@ function login()
                 $flag = password_verify($pass, $hash);
                 if ($flag) {
                     $_SESSION['username'] = $username;
+                    $role = $row['role'];
+                    $_SESSION['role'] = $role;
                     header('location:home.php');
                 } else {
                     echo '<div style="margin-bottom:0px; margin-top:-5px" class="alert alert-danger" role="alert">Incorrect username or password!</div>';
@@ -83,6 +86,78 @@ function login()
 }
 
 
+function admin_login()
+{
+    if (isset($_POST['login-btn'])) {
+        $username = $_POST['username'];
+        $email = $_POST['username'];
+        $pass = $_POST['password'];
+        if (empty($username) || empty($pass)) {
+            echo '<div style="margin-bottom:0px; margin-top:-5px" class="alert alert-danger" role="alert">No field can\'t be empty!</div>';
+        } else {
+            global $conn;
+            $qusername = "SELECT * FROM admin WHERE username='$username'";
+            $quseremail = "SELECT * FROM admin WHERE email='$email'";
+            $result = mysqli_query($conn, $qusername);
+            $result2 = mysqli_query($conn, $quseremail);
+            if (mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_assoc($result);
+                $hash = $row['password'];
+                $flag = password_verify($pass, $hash);
+                if ($flag) {
+                    $_SESSION['username'] = $username;
+                    $role = $row['role'];
+                    $_SESSION['role'] = $role;
+                    header('location:index.php');
+                } else {
+                    echo '<div style="margin-bottom:0px; margin-top:-5px" class="alert alert-danger" role="alert">Incorrect username or password!</div>';
+                }
+            } else if (mysqli_num_rows($result2) > 0) {
+                // $row = $result2->fetch_row();
+                $row = mysqli_fetch_assoc($result2);
+                $hash = $row['password'];
+                $flag = password_verify($pass, $hash);
+                if ($flag) {
+                    $user = $row['username'];
+                    $_SESSION['username'] = $user;
+                    header('location:index.php');
+                } else {
+                    echo '<div style="margin-bottom:0px; margin-top:-5px" class="alert alert-danger" role="alert">Incorrect username or password!</div>';
+                }
+            } else {
+                echo '<div style="margin-bottom:0px; margin-top:-5px" class="alert alert-danger" role="alert">Incorrect username or password!</div>';
+            }
+        }
+    }
+}
+
+function navbar_echo($value)
+{
+    if (isset($value)) {
+        if ($value == 'vendor') {
+            echo '<div class="main_menu">';
+            echo '<div class="mm_menu"><a href="#">Vendor <i class="fas fa-angle-down nav_icon"></i></a></div>';
+            echo '<ul class="submenu">';
+            echo '<li><a href="Sales_Dashboard.php">Dashboard</a></li>';
+            echo '<li><a href="MyProduct.php">My Product</a></li>';
+            echo '<li><a href="customer.php">Customer</a></li>';
+            echo '';
+            echo '</ul>';
+            echo '';
+            echo '</div>';
+        } else if($value=='affliate') {
+            echo '<div class="main_menu">';
+            echo '<div class="mm_menu"> <a href="home.php">Affiliate <i class="fas fa-angle-down nav_icon"></i></a></div>';
+            echo '<ul class="submenu">';
+            echo '<li><a href="Sales_Dashboard.php">Dashboard</a></li>';
+            echo '<li><a href="#">Offers</a></li>';
+            echo '<li><a href="launch_date.php">Launch Date</a></li>';
+            echo '</ul>';
+            echo '';
+            echo '</div>';
+        }
+    }
+}
 
 function addProduct($username)
 {

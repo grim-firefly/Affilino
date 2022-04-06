@@ -41,25 +41,9 @@ if (!isset($username)) {
                     </ul>
 
                 </div>
-                <div class="main_menu">
-                    <div class="mm_menu"><a href="#">Vendor <i class="fas fa-angle-down nav_icon"></i></a></div>
-                    <ul class="submenu">
-                        <li><a href="Sales_Dashboard.php">Dashboard</a></li>
-                        <li><a href="MyProduct.php">My Product</a></li>
-                        <li><a href="customer.php">Customer</a></li>
-
-                    </ul>
-
-                </div>
-                <div class="main_menu">
-                    <div class="mm_menu"> <a href="home.php">Affiliate <i class="fas fa-angle-down nav_icon"></i></a></div>
-                    <ul class="submenu">
-                        <li><a href="Sales_Dashboard.php">Dashboard</a></li>
-                        <li><a href="#">Offers</a></li>
-                        <li><a href="launch_date.php">Launch Date</a></li>
-                    </ul>
-
-                </div>
+                <?php
+                   navbar_echo($_SESSION['role']);
+                ?>
             </div>
             <div class="right_section">
                 <div class="notify"> <a href="#"><i class="fas fa-bell nav_icon"></i></a></div>
@@ -113,41 +97,7 @@ if (!isset($username)) {
             </thead>
             <tbody>
 
-                <?php
-                $host = 'localhost';
-                $user = 'root';
-                $host_pass = '';
-                $db_name = 'affilino';
-                $conn = new mysqli($host, $user, $host_pass, $db_name);
-
-                $sql = "SELECT * FROM productlist WHERE username = '$username'";
-                $result = mysqli_query($conn, $sql);
-                if (mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        $pid = $row['pid'];
-                        $pname = $row['pname'];
-                        $pimg = $row['pimg'];
-                        $pcat = $row['pcat'];
-                        $price = $row['price'];
-                        $pdis = $row['pdis'];
-                        $dprice = $price - ($price * $pdis / 100);
-                        $pA = $row['available'];
-                ?>
-                        <tr>
-                            <td scope="row"> <?php echo $pid; ?> </td>
-                            <td> <a style=" text-decoration:none; " href="#"><?php echo $pname; ?></a> </td>
-                            <td><img src="productImg/Pimg/<?php echo $pimg; ?>" width="30px" height="30px" alt=""></td>
-                            <td><?php echo $pcat; ?></td>
-                            <td><?php echo $price; ?></td>
-                            <td><?php echo $pdis; ?>%</td>
-                            <td><?php echo $dprice; ?></td>
-                            <td><?php echo $pA; ?></td>
-                        </tr>
-
-                <?php
-                    }
-                } else echo "<tr><td colspan='8' align='center'><h2> Product Not found </h2></td></tr>";
-                ?>
+              
 
             </tbody>
         </table>

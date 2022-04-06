@@ -41,7 +41,25 @@ include 'lib/function.php';
                 <i class="fas fa-unlock-alt icons_signup"></i>
                 <input type="password" name="cpassword" class="input-box" placeholder="Confirm Password" />
             </div>
+
+
+            <div class="input-group">
+                <span class="mr-2">I am a </span>
+                <label class="role mr-2">
+                    <input type="radio" checked="checked" name="role" value="affliate">
+                    <span class="checkmark"></span>
+                    Affliate
+
+                </label>
+                <label class="role">
+
+                    <input type="radio" name="role" value="vendor">
+                    <span class="checkmark"></span>
+                    Vendor
+                </label>
+            </div>
             <div class="already_account"><a href="login.php">Already have account?</a></div>
+            <div class="already_account"><a href="index.php">Go Back To Home?</a></div>
             <input type="submit" class="sign-up-btn" name="signup-btn" value="Signup" />
         </form>
         <p>Or Connect Using</p>

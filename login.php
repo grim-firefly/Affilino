@@ -42,6 +42,8 @@ include 'lib/function.php';
                 <div class="create_new_account"><a href="Signup.php">Create a new account?</a></div>
                 <div class="forget_password"><a href="forget.php">Forgot Password?</a></div>
             </div>
+            <div class="already_account"><a href="index.php">Return Home</a></div>
+
             <input type="submit" class="sign-up-btn" name="login-btn" value="Login" />
 
         </form>

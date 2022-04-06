@@ -46,25 +46,9 @@ if (!isset($_SESSION['username'])) {
                     </ul>
 
                 </div>
-                <div class="main_menu">
-                    <div class="mm_menu"><a href="#">Vendor <i class="fas fa-angle-down nav_icon"></i></a></div>
-                    <ul class="submenu">
-                        <li><a href="Sales_Dashboard.php">Dashboard</a></li>
-                        <li><a href="MyProduct.php">My Product</a></li>
-                        <li><a href="customer.php">Customer</a></li>
-
-                    </ul>
-
-                </div>
-                <div class="main_menu">
-                    <div class="mm_menu"> <a href="home.php">Affiliate <i class="fas fa-angle-down nav_icon"></i></a></div>
-                    <ul class="submenu">
-                        <li><a href="Sales_Dashboard.php">Dashboard</a></li>
-                        <li><a href="#">Offers</a></li>
-                        <li><a href="launch_date.php">Launch Date</a></li>
-                    </ul>
-
-                </div>
+                <?php
+                   navbar_echo($_SESSION['role']);
+                ?>
             </div>
             <div class="right_section">
                 <div class="notify"> <a href="#"><i class="fas fa-bell nav_icon"></i></a></div>
