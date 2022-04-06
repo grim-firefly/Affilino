@@ -1,103 +1,188 @@
-<?php
-include '../lib/function.php';
-if (!isset($_SESSION['username'])) {
-    header('location:login.php');
+<?php include('inc/main.php');
+include('inc/admin.php');
+include('codes/config.php');
+if ($adminid != NULL) {
+  echo "<script> window.setTimeout(function() { window.location.href = './dashboard'; }, 0);</script>";
+}
+$filename = "codes/config.php";
+if (file_exists($filename)) {
+} else {
+
+  echo "<script> window.setTimeout(function() { window.location.href = './install/index'; }, 0);</script>";
 }
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <title>Admin-Panel | Affilino</title>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../css/bootstrap.css" />
-    <!-- css files here -->
-    <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/dropdown.css">
-    <!-- font awesome -->
-    <link rel="stylesheet" href="../css/fontawesome.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>
+    <?php echo $softwarename; ?> - Login
+  </title>
+  <!-- Favicon -->
+  <link href="assets/img/brand/favicon.png" rel="icon" type="image/png">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <!-- Icons -->
+  <link href="assets/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
+  <link href="assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link href="assets/css/argon-dashboard.css?v=1.1.0" rel="stylesheet" />
 </head>
 
-<body>
-    <!-- navbar start from here  -->
-    <div class="navbar">
-        <div class="container">
-            <div class="left_section ">
-                <div class="logo main_menu">
-                    <a href="index.php">Affilino</a>
-                </div>
-                <div class="main_menu">
-                    <div class="mm_menu"><a href="#">MarketPlace <i class="fas fa-angle-down nav_icon"></i></a></div>
-                    <ul class="submenu">
-                        <li><a href="category.php">Catagory</a></li>
-                        <li><a href="launch_date.php">Launch Date</a></li>
+<body class="bg-default">
+  <div class="main-content">
+    <!-- Navbar -->
+    <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
+      <div class="container px-4">
+        <a class="navbar-brand" href="../index.php" style="font-size:large;">
+          Affilino
+          <!-- Affilino -->
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-collapse-main">
+          <!-- Collapse header -->
+          <div class="navbar-collapse-header d-md-none">
+            <div class="row">
+              <div class="col-6 collapse-brand">
+                <a href="../index.php" style="font-size:large;">
+                  
+                  Affilino
 
-                    </ul>
-
-                </div>
-                
-                <div class="main_menu">
-                    <div class="mm_menu"> <a href="#">User <i class="fas fa-angle-down nav_icon"></i></a></div>
-                    <ul class="submenu">
-                        <li><a href="Sales_Dashboard.php">Affliate</a></li>
-                        <li><a href="#">Vendor</a></li>
-                    </ul>
-
-                </div>
-                <div class="main_menu">
-                    <div class="mm_menu"><a href="#">Product</a></div>
-                    <!-- <ul class="submenu">
-                    <li><a href="#">Product</a></li>'
-
-                    </ul> -->
-
-                </div>
-
+                </a>
+              </div>
+              <div class="col-6 collapse-close">
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                  <span></span>
+                  <span></span>
+                </button>
+              </div>
             </div>
-            <div class="right_section">
-                <div class="notify"> <a href="#"><i class="fas fa-bell nav_icon"></i></a></div>
-                <div class="username">
-                    <div class="mm_menu"><a href="#"><?php echo $_SESSION['username']; ?> <i class="fas fa-angle-down nav_icon"></i></a></div>
+          </div>
+          <!-- Navbar items -->
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="#">
 
-                    <ul class="submenu">
-                        <li><a class="pl-2" href="#"><i class="fas fa-heart"></i> Favourite</a></li>
-                        <li><a class="pl-2" href="#"><i class="fas fa-history"></i> Histroy</a></li>
-                        <li><a class="pl-2" href="#"><i class="fas fa-wallet"></i> Wallet</a></li>
-                        <li><a class="pl-2" href="#"><i class="fas fa-user-tie"></i> My Account</a></li>
-                        <li><a class="pl-2" href="logout.php?isLogout=1"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
-                    </ul>
+                <span class="nav-link-inner--text"></span>
+              </a>
+            </li>
 
-                </div>
-
-            </div>
+          </ul>
         </div>
+      </div>
+    </nav>
+    <!-- Header -->
+    <div class="header bg-gradient-primary py-7 py-lg-8">
+      <div class="container">
+        <div class="header-body text-center mb-7">
+          <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-6">
+              <h1 class="text-white">Welcome!</h1>
+              <p class="text-lead text-light"> <?php echo $softwaredescrip; ?></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="separator separator-bottom separator-skew zindex-100">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+      </div>
     </div>
+    <!-- Page content -->
+    <div class="container mt--8 pb-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+          <div class="card bg-secondary shadow border-0">
+
+            <div class="card-body px-lg-5 py-lg-5">
+              <div class="text-center text-muted mb-4">
+                Login Now
+              </div>
+              <?php
+              if (!empty($_POST)) {
+                $email = mysqli_real_escape_string($conn, $_POST['email']);
+                $password = mysqli_real_escape_string($conn, $_POST['password']);
+                $rem = mysqli_real_escape_string($conn, $_POST['rem']);
+                $loginnow =  AdminLogin($conn, $email, $password, $rem);
+                if ($loginnow == 'success') {
+                  echo '<div class="alert alert-success" role="alert"><strong>Success!</strong>Login Successfull Please Wait!</div>';
+                  echo "<script> window.setTimeout(function() { window.location.href = 'dashboard'; }, 150);</script>";
+                } elseif ($loginnow == 'error') {
+                  echo '<div class="alert alert-warning" role="alert"><strong>Warning!</strong> Wrong Email or Password </div>';
+                }
+              }
+              ?>
+              <form role="form" action="" method="post">
+                <div class="form-group mb-3">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    </div>
+                    <input class="form-control" name="email" placeholder="Email" type="email" required="required">
+                  </div>
+                </div>
 
 
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input class="form-control" name="password" placeholder="Password" type="password" required="required">
+                  </div>
+                </div>
+                <div class="custom-control custom-control-alternative custom-checkbox">
+                  <input class="custom-control-input" id="customCheckLogin" value="1" name="rem" type="checkbox">
+                  <label class="custom-control-label" for="customCheckLogin">
+                    <span class="text-muted">Remember me</span>
+                  </label>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary my-4">Sign in</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-6">
+              <a href="forgotpassword" class="text-light"><small>Forgot password?</small></a>
+            </div>
+            <div class="col-6 text-right">
 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="py-5">
+      <div class="container">
+        <div class="row align-items-center justify-content-xl-between">
+          <div class="col-xl-6">
+            <div class="copyright text-center text-xl-left text-muted">
+              © <?php echo date('Y') ?> <a href="../index.php" class="font-weight-bold ml-1" target="_blank"><?php echo $softwarename; ?> </a>
+            </div>
+          </div>
+          <div class="col-xl-6">
+            <ul class="nav nav-footer justify-content-center justify-content-xl-end">
 
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <!--   Core   -->
+  <script src="assets/js/plugins/jquery/dist/jquery.min.js"></script>
+  <script src="assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <!--   Optional JS   -->
+  <!--   Argon JS   -->
+  <script src="assets/js/argon-dashboard.min.js?v=1.1.0"></script>
 
-
-
-
-
-
-
-
-
-
-
-
-    <!-- bootstrap js files here -->
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/popper.min.js"></script>
-    <script src="../js/font_awesome.min.js"></script>
 </body>
 
 </html>
