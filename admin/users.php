@@ -1,4 +1,8 @@
 <?php include('header.php');
+if (isset($_GET['id']) && isset($_GET['command'])) {
+
+    user_command($conn);
+}
 
 ?>
 <!-- Header -->
@@ -105,7 +109,7 @@
             <tbody>
 
                 <?php
-                $data = GetAllUsers($conn,"approved");
+                $data = GetAllUsers($conn, "approved");
                 for ($i = 0; $i < count($data); $i++) {
                     echo "<tr>";
                     echo '<td>' . $data[$i]['id'] . '</td>';
@@ -113,12 +117,13 @@
                     echo '<td>' . $data[$i]['email'] . '</td>';
                     echo '<td>' . $data[$i]['createdtime'] . '</td>';
                     echo '<td>
-                    <button type="button" class="btn btn-warning btn-sm" name="bann">Ban</button>
-                    <button type="button" class="btn btn-danger btn-sm">Remove</button>
+                   
+                    <a  class="btn btn-warning btn-sm" href="users.php?id=' . $data[$i]['id'] . '&command=ban">Ban</a>
+                    <a  class="btn btn-danger btn-sm" href="users.php?id=' . $data[$i]['id'] . '&command=remove">Remove</a>
+                    
                     </td>';
                     echo "</tr>";
                 }
-
                 ?>
             </tbody>
         </table>

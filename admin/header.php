@@ -110,7 +110,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="#">
+            <a class="nav-link " href="category.php">
               <i class="ni ni-bullet-list-67 text-blue"></i>  Category
             </a>
           </li>

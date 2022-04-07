@@ -1,5 +1,8 @@
 <?php include('header.php');
-$status = "approved";
+if (isset($_GET['id']) && isset($_GET['command'])) {
+
+    user_command($conn);
+}
 
 ?>
 <!-- Header -->
@@ -106,7 +109,7 @@ $status = "approved";
             <tbody>
 
                 <?php
-                $data = GetAllUsers($conn,"banned");
+                $data = GetAllUsers($conn, "banned");
                 for ($i = 0; $i < count($data); $i++) {
                     echo "<tr>";
                     echo '<td>' . $data[$i]['id'] . '</td>';
@@ -114,7 +117,7 @@ $status = "approved";
                     echo '<td>' . $data[$i]['email'] . '</td>';
                     echo '<td>' . $data[$i]['createdtime'] . '</td>';
                     echo '<td>
-                    <span class=" badge  badge-warning">Banned</span>
+                    <a type="button" class="btn btn-danger btn-sm"href="bannedUser.php?id=' . $data[$i]['id'] . '&command=unban">Unban</a>
                     </td>';
                     echo "</tr>";
                 }

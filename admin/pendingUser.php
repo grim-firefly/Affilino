@@ -1,5 +1,9 @@
 <?php include('header.php');
-$status = "approved";
+if (isset($_GET['id']) && isset($_GET['command'])) {
+
+    user_command($conn);
+}
+
 
 ?>
 <!-- Header -->
@@ -114,8 +118,8 @@ $status = "approved";
                     echo '<td>' . $data[$i]['email'] . '</td>';
                     echo '<td>' . $data[$i]['createdtime'] . '</td>';
                     echo '<td>
-                    <button type="button" class="btn btn-warning btn-sm" name="approve">Approve</button>
-                    <button type="button" class="btn btn-danger btn-sm" name="reject">Reject</button>
+                    <a type="button" class="btn btn-warning btn-sm" href="pendingUser.php?id=' . $data[$i]['id'] . '&command=approve">Approve</a>
+                    <a type="button" class="btn btn-danger btn-sm"href="pendingUser.php?id=' . $data[$i]['id'] . '&command=reject">Reject</a>
                     </td>';
                     echo "</tr>";
                 }
