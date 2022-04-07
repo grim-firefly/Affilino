@@ -154,7 +154,6 @@ form input:focus {
   padding-left: 35px;
   margin-bottom: 12px;
   cursor: pointer;
-  font-size: 22px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -167,6 +166,7 @@ form input:focus {
   opacity: 0;
   cursor: pointer;
 }
+
 
 /* Create a custom radio button */
 .checkmark {
@@ -196,7 +196,3 @@ form input:focus {
   display: none;
 }
 
-/* Show the indicator (dot/circle) when checked */
-.role input:checked ~ .checkmark:after {
-  display: block;
-}

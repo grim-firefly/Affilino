@@ -5,7 +5,7 @@ $user = 'root';
 $host_pass = '';
 $db_name = 'affilino';
 $conn = new mysqli($host, $user, $host_pass, $db_name);
-
+//signups
 function signup()
 {
     // echo '<div style="margin-bottom:0px; margin-top:-5px" class="alert alert-danger" role="alert">A simple danger alert—check it out!</div>';
@@ -30,7 +30,12 @@ function signup()
             } else {
                 // echo "$pass";
                 $e_pass = password_hash($pass, PASSWORD_BCRYPT);
-                $qinsert = "INSERT INTO `user`(`username`, `password`, `email`,`role`) VALUES ('$username','$e_pass','$email','$role')";
+                $status="approved";
+                if($role!="affliate")
+                {
+                    $status="pending";
+                }
+                $qinsert = "INSERT INTO `user`(`username`, `password`, `email`,`role`,`status`,`createdtime`) VALUES ('$username','$e_pass','$email','$role','$status',Now() )";
                 mysqli_query($conn, $qinsert);
                 $_SESSION['massage'] = '<div style="margin-bottom:0px; margin-top:-5px" class="alert alert-success" role="alert">Successfully Registerd!</div>';
                 header('location:login.php');
@@ -39,7 +44,7 @@ function signup()
     }
 }
 
-
+//authorization
 function login()
 {
     if (isset($_POST['login-btn'])) {
@@ -58,12 +63,22 @@ function login()
                 $row = mysqli_fetch_assoc($result);
                 $hash = $row['password'];
                 $flag = password_verify($pass, $hash);
-                if ($flag) {
+                if ($flag && $row['status']=="approved") {
                     $_SESSION['username'] = $username;
                     $role = $row['role'];
                     $_SESSION['role'] = $role;
                     header('location:home.php');
-                } else {
+                }
+                else if($row['status']=="pending")
+                {
+                    echo '<div style="margin-bottom:0px; margin-top:-5px" class="alert alert-danger" role="alert">Your account is not approved yet!</div>';
+                }
+                else if($row['status']=="banned")
+                {
+                    echo '<div style="margin-bottom:0px; margin-top:-5px" class="alert alert-danger" role="alert">Your account is banned!</div>';
+                }
+                
+                else {
                     echo '<div style="margin-bottom:0px; margin-top:-5px" class="alert alert-danger" role="alert">Incorrect username or password!</div>';
                 }
             } else if (mysqli_num_rows($result2) > 0) {
@@ -71,11 +86,20 @@ function login()
                 $row = mysqli_fetch_assoc($result2);
                 $hash = $row['password'];
                 $flag = password_verify($pass, $hash);
-                if ($flag) {
+                if ($flag && $row['status']=="approved") {
                     $user = $row['username'];
                     $_SESSION['username'] = $user;
                     header('location:home.php');
-                } else {
+                }
+                else if($row['status']=="pending")
+                {
+                    echo '<div style="margin-bottom:0px; margin-top:-5px" class="alert alert-danger" role="alert">Your account is not approved yet!</div>';
+                }
+                else if($row['status']=="banned")
+                {
+                    echo '<div style="margin-bottom:0px; margin-top:-5px" class="alert alert-danger" role="alert">Your account is banned!</div>';
+                }
+                else {
                     echo '<div style="margin-bottom:0px; margin-top:-5px" class="alert alert-danger" role="alert">Incorrect username or password!</div>';
                 }
             } else {
@@ -85,51 +109,7 @@ function login()
     }
 }
 
-
-function admin_login()
-{
-    if (isset($_POST['login-btn'])) {
-        $username = $_POST['username'];
-        $email = $_POST['username'];
-        $pass = $_POST['password'];
-        if (empty($username) || empty($pass)) {
-            echo '<div style="margin-bottom:0px; margin-top:-5px" class="alert alert-danger" role="alert">No field can\'t be empty!</div>';
-        } else {
-            global $conn;
-            $qusername = "SELECT * FROM admin WHERE username='$username'";
-            $quseremail = "SELECT * FROM admin WHERE email='$email'";
-            $result = mysqli_query($conn, $qusername);
-            $result2 = mysqli_query($conn, $quseremail);
-            if (mysqli_num_rows($result) > 0) {
-                $row = mysqli_fetch_assoc($result);
-                $hash = $row['password'];
-                $flag = password_verify($pass, $hash);
-                if ($flag) {
-                    $_SESSION['username'] = $username;
-                    $role = $row['role'];
-                    $_SESSION['role'] = $role;
-                    header('location:index.php');
-                } else {
-                    echo '<div style="margin-bottom:0px; margin-top:-5px" class="alert alert-danger" role="alert">Incorrect username or password!</div>';
-                }
-            } else if (mysqli_num_rows($result2) > 0) {
-                // $row = $result2->fetch_row();
-                $row = mysqli_fetch_assoc($result2);
-                $hash = $row['password'];
-                $flag = password_verify($pass, $hash);
-                if ($flag) {
-                    $user = $row['username'];
-                    $_SESSION['username'] = $user;
-                    header('location:index.php');
-                } else {
-                    echo '<div style="margin-bottom:0px; margin-top:-5px" class="alert alert-danger" role="alert">Incorrect username or password!</div>';
-                }
-            } else {
-                echo '<div style="margin-bottom:0px; margin-top:-5px" class="alert alert-danger" role="alert">Incorrect username or password!</div>';
-            }
-        }
-    }
-}
+//navbar for diffrent roles
 
 function navbar_echo($value)
 {

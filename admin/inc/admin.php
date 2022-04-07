@@ -1,5 +1,4 @@
 <?php
-// created by ajith jojo
 // admin related functions 
 
 //create admin
@@ -150,5 +149,39 @@
 	function DeleteAdmin($conn,$aid)
 	{
 		mysqli_query($conn,"DELETE FROM admins WHERE aid ='$aid'"); 
-	}	
-?>
+	}
+	
+// get all users
+function GetAllUsers($conn,$status)
+{
+	$sqlq = mysqli_query($conn,"SELECT * FROM `user` WHERE `status`='$status' ORDER BY `createdtime` DESC");
+	$data =array();
+	while($row =mysqli_fetch_assoc($sqlq))
+	{
+		$data[] = $row; 
+	}    
+	return $data;
+}
+
+// count according role
+	function count_user($conn,$role){
+		$sqlq = mysqli_query($conn,"SELECT COUNT(username) FROM `user` WHERE `role`='$role'");
+		$row=mysqli_fetch_row($sqlq);
+		return $row[0];
+	}
+//count according status
+	function count_user_status($conn,$status){
+		$sqlq = mysqli_query($conn,"SELECT COUNT(username) FROM `user` WHERE `status`='$status'");
+		$row=mysqli_fetch_row($sqlq);
+		return $row[0];
+	}
+	// function GetAllUsers($conn)
+	// {
+	// 	$sqlq = mysqli_query($conn,"SELECT * FROM `users` ");
+	// 	$data =array();
+	// 	while($row =mysqli_fetch_assoc($sqlq))
+	// 	{
+	// 		$data[] = $row; 
+	// 	}    
+	// 	return $data;
+	// }
