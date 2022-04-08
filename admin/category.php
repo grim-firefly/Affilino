@@ -1,6 +1,9 @@
 <?php
 
 include('header.php');
+    if(isset($_GET['id']) && isset($_GET['command'])){
+        category_command($conn);
+    }
 
 ?>
 
@@ -14,8 +17,8 @@ include('header.php');
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0"> Vendor</h5>
-                                    <span class="h2 font-weight-bold mb-0"> <?php echo count_user($conn, "vendor"); ?> </span>
+                                    <h5 class="card-title text-uppercase text-muted mb-0"> Category</h5>
+                                    <span class="h2 font-weight-bold mb-0"> <?php echo countCategory($conn); ?> </span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -63,12 +66,12 @@ include('header.php');
                 for ($i = 0; $i < count($data); $i++) {
                     echo "<tr>";
                     echo '<td>' . $data[$i]['id'] . '</td>';
-                    echo '<td>' . $data[$i]['Name'] . '</td>';
+                    echo '<td>' . $data[$i]['name'] . '</td>';
                     echo '<td>' . $data[$i]['createdtime'] . '</td>';
                     echo '<td>
                    
-                    <a  class="btn btn-warning btn-sm" href="users.php?id=' . $data[$i]['id'] . '&command=ban">edit</a>
-                    <a  class="btn btn-danger btn-sm" href="users.php?id=' . $data[$i]['id'] . '&command=remove">Remove</a>
+                    <a  class="btn btn-warning btn-sm" href="editcategory.php?id=' . $data[$i]['id'] . '">edit</a>
+                    <a  class="btn btn-danger btn-sm" href="category.php?id=' . $data[$i]['id'] . '&command=remove">Remove</a>
                     
                     </td>';
                     echo "</tr>";

@@ -1,7 +1,9 @@
 <?php
 
 include('header.php');
-
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+}
 ?>
 
 <style>
@@ -59,7 +61,7 @@ include('header.php');
         font-family: sans-serif;
     }
 
-    .center .inputbox input::placeholder{
+    .center .inputbox input::placeholder {
         font-size: 14px;
         font-style: italic;
         /* font-family: sans-serif; */
@@ -125,17 +127,17 @@ include('header.php');
     <div class="row mt-2 mb-2">
         <div style="width: 400px; margin:0 auto;">
             <div class="center">
-                <h1>Create New Category</h1>
+                <h1>Update Category</h1>
                 <form method="POST">
                     <?php
-                    echo createCategory($conn);
+                    echo updateCategory($conn, $id);
                     ?>
                     <div class="inputbox">
-                        <input type="text" name="name" required="required" placeholder="Category Name">
+                        <input type="text" name="name" required="required" placeholder="Category Name" value=" <?php echo categoryName($conn , $id); ?>">
                     </div>
 
                     <div class="inputbox">
-                        <input type="submit" name="createCategory" value="Create">
+                        <input type="submit" name="updateCategory" value="Update">
                         <a href="category.php" class="btn btn-primary btn-lg  float-right mr-5">Cancel</a>
                     </div>
                 </form>

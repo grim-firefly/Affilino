@@ -45,10 +45,10 @@ if (!isset($_SESSION['username'])) {
 
                 </div>
                 <?php
-                   navbar_echo($_SESSION['role']);
+                navbar_echo($_SESSION['username']);
                 ?>
-             
-                
+
+
             </div>
             <div class="right_section">
                 <div class="notify"> <a href="#"><i class="fas fa-bell nav_icon"></i></a></div>
@@ -86,7 +86,7 @@ if (!isset($_SESSION['username'])) {
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">#1 Digital products</th>
+                    <th scope="col">#Digital products</th>
                 </tr>
             </thead>
             <div class="container">
@@ -94,23 +94,17 @@ if (!isset($_SESSION['username'])) {
                     <table class="table table-borderless">
                         <tbody>
                             <tr>
-                                <td><a href="#">Animals & Pets</a></td>
-                                <td><a href="#">Betting systems</a></td>
-                                <td><a href="#">usiness & Investment</a></td>
-                                <td><a href="#">Computer and Internet</a></td>
+                                <?php
+                                $data = GetAllCategory($conn);
+                                for ($i = 0; $i < count($data); $i++) {
+                                    if ($i % 4 == 0 && $i != 0) {
+                                        echo '</tr><tr>';
+                                    }
+                                    echo '<td>' . $data[$i]['name'] . '</td>';
+                                }
+                                ?>
                             </tr>
-                            <tr>
-                                <td><a href="#">Dance & Music</a></td>
-                                <td><a href="#">Dating, Love and Relationships</a></td>
-                                <td><a href="#">E-Mail-Marketing</a></td>
-                                <td><a href="#">Education</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Family and Kids</a></td>
-                                <td><a href="#">Fitness & Health</a></td>
-                                <td><a href="#">Food & Drinks</a></td>
-                                <td><a href="#">Games & Fun</a></td>
-                            </tr>
+
                         </tbody>
                     </table>
                 </div>

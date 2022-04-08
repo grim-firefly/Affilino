@@ -170,3 +170,14 @@ function addProduct($username)
         }
     }
 }
+
+//get all category
+function GetAllCategory($conn)
+{
+	$sqlq = mysqli_query($conn, "SELECT * FROM `category`");
+	$data = array();
+	while ($row = mysqli_fetch_assoc($sqlq)) {
+		$data[] = $row;
+	}
+	return $data;
+}

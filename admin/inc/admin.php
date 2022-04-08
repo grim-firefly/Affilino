@@ -171,8 +171,7 @@ function user_command($conn)
 		mysqli_query($conn, "UPDATE `user` SET `status`='approved' WHERE `id`='$id'");
 	} else if ($command == 'reject') {
 		mysqli_query($conn, "DELETE FROM `user` WHERE `id`='$id'");
-	}
-	else if($command=='unban'){
+	} else if ($command == 'unban') {
 		mysqli_query($conn, "UPDATE `user` SET `status`='approved' WHERE `id`='$id'");
 	}
 }
@@ -180,11 +179,90 @@ function user_command($conn)
 
 //category started From Here
 //get all categories
-function GetAllCategory($conn){
+function GetAllCategory($conn)
+{
 	$sqlq = mysqli_query($conn, "SELECT * FROM `category`");
 	$data = array();
 	while ($row = mysqli_fetch_assoc($sqlq)) {
 		$data[] = $row;
 	}
 	return $data;
+}
+// create category
+function createCategory($conn)
+{
+	if (isset($_POST['createCategory'])) {
+		$name = $_POST['name'];
+		$query = mysqli_query($conn, "SELECT * FROM `category` WHERE `name`='$name'");
+		if (mysqli_num_rows($query) > 0) {
+			return '
+			<div class="alert alert-warning alert-dismissible fade show" style="margin-top:-30px;" role="alert">
+			<strong>' . $name . '</strong>  is already Exist!
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>';
+		}
+
+		$sqlq = mysqli_query($conn, "INSERT INTO `category`(`name`,`createdtime`) VALUES ('$name',now())");
+		return '
+			<div class="alert alert-success alert-dismissible fade show" style="margin-top:-30px;" role="alert">
+			<strong>' . $name . '</strong>  Created Successfully!
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>';
+	}
+}
+
+//delete
+function category_command($conn)
+{
+	$command = $_GET['command'];
+	$id = $_GET['id'];
+	if ($command == 'remove') {
+		mysqli_query($conn, "DELETE FROM `category` WHERE `id`='$id'");
+	}
+}
+//update
+function updateCategory($conn, $id)
+{
+	if (isset($_POST['updateCategory'])) {
+		$name = $_POST['name'];
+
+		$query = mysqli_query($conn, "SELECT * FROM `category` WHERE `name`='$name'");
+		if (mysqli_num_rows($query) > 0) {
+			return '
+			<div class="alert alert-warning alert-dismissible fade show" style="margin-top:-30px;" role="alert">
+			<strong>' . $name . '</strong>  is already Exist!
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>';
+		}
+
+		$sqlq = mysqli_query($conn, "UPDATE `category` SET `name`='$name' WHERE `id`='$id'");
+		return '
+			<div class="alert alert-success alert-dismissible fade show" style="margin-top:-30px;" role="alert">
+			<strong>' . $name . '</strong>  Updated Successfully!
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>';
+	}
+}
+//return name of the category
+function categoryName($conn, $id)
+{
+	$sqlq = mysqli_query($conn, "SELECT * FROM `category` WHERE `id`='$id'");
+	$row = mysqli_fetch_assoc($sqlq);
+	$name = $row['name'];
+	return $name;
+}
+//count category
+function countCategory($conn)
+{
+	$sqlq = mysqli_query($conn, "SELECT COUNT(id) FROM `category`");
+	$row = mysqli_fetch_row($sqlq);
+	return $row[0];
 }

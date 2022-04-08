@@ -78,7 +78,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Products</h5>
                       <span class="h2 font-weight-bold mb-0">49,65%</span>
                     </div>
                     <div class="col-auto">
@@ -181,7 +181,7 @@
                 <tbody>
                   <tr>
                     <th scope="row">
-                      /argon/
+                      /affilino/
                     </th>
                     <td>
                       4,569
@@ -195,7 +195,7 @@
                   </tr>
                   <tr>
                     <th scope="row">
-                      /argon/index.html
+                      /affilino/index.php
                     </th>
                     <td>
                       3,985
@@ -209,7 +209,7 @@
                   </tr>
                   <tr>
                     <th scope="row">
-                      /argon/charts.html
+                      /affilino/category.php
                     </th>
                     <td>
                       3,513
@@ -223,7 +223,7 @@
                   </tr>
                   <tr>
                     <th scope="row">
-                      /argon/tables.html
+                      /affilino/dashboard.php
                     </th>
                     <td>
                       2,050
@@ -237,7 +237,7 @@
                   </tr>
                   <tr>
                     <th scope="row">
-                      /argon/profile.html
+                      /affilino/profile.php
                     </th>
                     <td>
                       1,795
