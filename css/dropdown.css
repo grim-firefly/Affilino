@@ -75,14 +75,14 @@
   width: 100%;
   display: block;
   transform: translateY(-2em);
-  z-index: -1 !important;
+  /* z-index: -1 !important; */
   transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s,
     z-index 0s linear 0.01s;
 }
 .main_menu:hover .submenu {
   visibility: visible;
   opacity: 1;
-  z-index: 1 !important;
+  /* z-index: 1 !important; */
   transform: translateY(0%);
   transition-delay: 0s, 0s, 0.4s;
   display: block;

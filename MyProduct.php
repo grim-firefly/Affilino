@@ -1,8 +1,12 @@
 <?php
 include 'lib/function.php';
+include 'admin/inc/admin.php';
 $username = $_SESSION['username'];
 if (!isset($username)) {
     header('location:index.php');
+}
+if (isset($_GET['id'])) {
+    removeProduct($conn, $_GET['id'], $username);
 }
 ?>
 <!DOCTYPE html>
@@ -42,7 +46,7 @@ if (!isset($username)) {
 
                 </div>
                 <?php
-                   navbar_echo($_SESSION['role']);
+                navbar_echo($_SESSION['role']);
                 ?>
             </div>
             <div class="right_section">
@@ -63,6 +67,7 @@ if (!isset($username)) {
             </div>
         </div>
     </div>
+
     <!-- product heading -->
     <div class="container mt-2 mb-3">
         <div class="product-heading">
@@ -86,18 +91,38 @@ if (!isset($username)) {
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Product</th>
-                    <th scope="col">Product Image</th>
-                    <th scope="col">Product Category</th>
-                    <th scope="col">Regular Price</th>
-                    <th scope="col">Discount</th>
-                    <th scope="col">Discounted Price</th>
-                    <th scope="col">Available</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Creted TIme</th>
+                    <th scope="col">status</th>
+
+                    <th scope="col">Options</th>
                 </tr>
             </thead>
             <tbody>
+                <?php
 
-              
+                $data = getAllProduct($conn, $username);
+                for ($i = 0; $i < count($data); $i++) {
+                    echo '<tr>';
+                    echo '<td>' . $data[$i]['id'] . '</td>';
+                    echo '<td>' . $data[$i]['name'] . '</td>';
+                    echo '<td>' . categoryName($conn, $data[$i]['categoryId']) . '</td>';
+                    echo '<td>' . $data[$i]['discountPrice'] . '</td>';
+                    echo '<td>' . $data[$i]['createdTime'] . '</td>';
+                    echo '<td>' . $data[$i]['status'] . '</td>';
+                    echo '<td>';
+                    echo '<a href="productDetails.php?id=' . $data[$i]['id'] . '" class="btn btn-sm btn-info">View</a>';
+                    echo '<a href="editProduct.php?id=' . $data[$i]['id'] . '" class="btn btn-sm btn-warning">Edit</a>';
+                    echo '<a href="MyProduct.php?id=' . $data[$i]['id'] . '" class="btn btn-sm btn-danger">Delete</a>';
+                    echo '</td>';
+
+                    echo '</tr>';
+                }
+
+                ?>
+
 
             </tbody>
         </table>

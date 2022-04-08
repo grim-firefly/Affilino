@@ -5,6 +5,9 @@ $username = $_SESSION['username'];
 if (!isset($username)) {
     header('location:index.php');
 }
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,14 +72,15 @@ if (!isset($username)) {
 
 
     <div class="container pt-5">
-        <div class="header_text" style="text-align: center; margin:0 auto; font-size:18px; font-weight:bolder;">Add Product</div>
+        <div class="header_text" style="text-align: center; margin:0 auto; font-size:18px; font-weight:bolder;">Update Product</div>
 
         <div class="form_header">
             <span class="right-line"></span>
 
         </div>
         <form action="" method="post" enctype='multipart/form-data' class="form__container col-6 offset-3 mt-3">
-            <?php addProduct($conn, $username); ?>
+            <?php updateProduct($conn, $id); ?>
+            <?php $product = getProduct($conn, $id); ?>
             <table>
                 <div class="form-group mb-2">
                     <tr>
@@ -84,7 +88,7 @@ if (!isset($username)) {
                             <Label>Product name:</Label>
                         </td>
                         <td>
-                            <input type="text" name="Pname" class="form-control">
+                            <input type="text" name="Pname" class="form-control" value=" <?php echo $product['name']; ?>">
                         </td>
                     </tr>
                 </div>
@@ -118,11 +122,15 @@ if (!isset($username)) {
                         </td>
                         <td>
                             <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="category_id" required>
-                                <option selected disabled>__Choose__</option>
                                 <?php
                                 $data = GetAllCategory($conn);
                                 for ($i = 0; $i < count($data); $i++) {
-                                    echo '<option value="' . $data[$i]['id'] . '">' . $data[$i]['name'] . '</option>';
+
+                                    if ($product['category_id'] == $data[$i]['id']) {
+                                        echo '<option value="' . $data[$i]['id'] . '" selected>' . $data[$i]['name'] . '</option>';
+                                    } else {
+                                        echo '<option value="' . $data[$i]['id'] . '">' . $data[$i]['name'] . '</option>';
+                                    }
                                 }
 
                                 ?>
@@ -138,7 +146,7 @@ if (!isset($username)) {
                             <Label>Regular Price:</Label>
                         </td>
                         <td>
-                            <input type="text" name="pPrice" class="form-control" id="exampleFormControlFile1">
+                            <input type="text" name="pPrice" class="form-control" id="exampleFormControlFile1" value=" <?php echo $product['price']; ?>">
                         </td>
                     </tr>
                 </div>
@@ -148,7 +156,7 @@ if (!isset($username)) {
                             <Label>Discount:</Label>
                         </td>
                         <td>
-                            <input type="text" name="pdiscount" class="form-control" id="exampleFormControlFile1">
+                            <input type="text" name="pdiscount" class="form-control" id="exampleFormControlFile1" value=" <?php echo $product['discountPrice']; ?>">
                         </td>
                     </tr>
                 </div>
@@ -158,7 +166,7 @@ if (!isset($username)) {
                             <Label>Small Description:</Label>
                         </td>
                         <td>
-                            <textarea name="smDescription" class="form-control" id="exampleFormControlFile1" cols="30" rows="3"></textarea>
+                            <textarea name="smDescription" class="form-control" id="exampleFormControlFile1" cols="30" rows="3"><?php echo $product['smDescription']; ?></textarea>
                         </td>
                     </tr>
                 </div>
@@ -168,7 +176,7 @@ if (!isset($username)) {
                             <Label>Description:</Label>
                         </td>
                         <td>
-                            <textarea name="Description" class="form-control" id="exampleFormControlFile1" cols="30" rows="10"></textarea>
+                            <textarea name="Description" class="form-control" id="exampleFormControlFile1" cols="30" rows="10"> <?php echo $product['Description']; ?></textarea>
                         </td>
                     </tr>
                 </div>
@@ -176,9 +184,9 @@ if (!isset($username)) {
 
             </table>
 
-            <button type="submit" name="addProduct" class="btn btn-success  mt-3">
+            <button type="submit" name="updateProduct" class="btn btn-success  mt-3">
                 <i class="fas fa-plus-circle"></i>
-                Add Product
+                Update Product
             </button>
             <a href="MyProduct.php" style="color: #fff;" class=" btn btn-warning mt-3">Cancel</a>
         </form>

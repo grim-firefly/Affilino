@@ -3,23 +3,30 @@
   justify-content: flex-start;
   align-items: center;
 }
+
 .header_text {
   display: block;
   width: 140px;
   font-size: 20px;
 }
+
 .right-line {
-  display: block;
   width: 100%;
-  height: 3px;
+  display: block;
+  height: 25px;
   margin-top: 3px;
-  background: #ddd;
+  background: #777;
 }
+
+
+}
+
 .form__container {
   box-shadow: 0 0 6px #ddd;
   width: 750px;
   padding: 20px;
 }
+
 tr td {
   padding: 8px 20px;
 }
