@@ -165,6 +165,7 @@ function user_command($conn)
 	$id = $_GET['id'];
 	if ($command == 'remove') {
 		mysqli_query($conn, "DELETE FROM `user` WHERE `id`='$id'");
+		mysqli_query($conn, "DELETE FROM `product` WHERE `userId`='$id'");
 	} else if ($command == 'ban') {
 		mysqli_query($conn, "UPDATE `user` SET `status`='banned' WHERE `id`='$id'");
 	} else if ($command == 'approve') {
@@ -265,4 +266,46 @@ function countCategory($conn)
 	$sqlq = mysqli_query($conn, "SELECT COUNT(id) FROM `category`");
 	$row = mysqli_fetch_row($sqlq);
 	return $row[0];
+}
+
+//check is vendor or not
+
+function isVendor($conn, $username)
+{
+	$sqlq = mysqli_query($conn, "SELECT * FROM `user` WHERE `username`='$username'");
+	$row = mysqli_fetch_assoc($sqlq);
+	$role = $row['role'];
+	if ( $role == 'vendor') {
+		return true;
+	} else {
+		return false;
+	}
+}
+//check is admin or not
+function isAdmin($conn, $username)
+{
+	$sqlq = mysqli_query($conn, "SELECT * FROM `admins` WHERE `name`='$username'");
+	if (mysqli_num_rows($sqlq) > 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+//count products
+function CountProduct($conn,$status){
+	$sqlq = mysqli_query($conn, "SELECT COUNT(id) FROM `product` WHERE `status`='$status'");
+	$row = mysqli_fetch_row($sqlq);
+	return $row[0];
+}
+
+//approve & rejects
+function productCommand($conn)
+{
+	$command = $_GET['command'];
+	$id = $_GET['id'];
+	if ($command == 'approve') {
+		mysqli_query($conn, "UPDATE `product` SET `status`='approved' WHERE `id`='$id'");
+	} else if ($command == 'reject') {
+		mysqli_query($conn, "DELETE FROM `product` WHERE `id`='$id'");
+	}
 }

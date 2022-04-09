@@ -32,9 +32,9 @@ if (!isset($_SESSION['username'])) {
           <a href="home.php">Affilino</a>
         </div>
         <div class="main_menu">
-          <div class="mm_menu"><a href="#">MarketPlace <i class="fas fa-angle-down nav_icon"></i></a></div>
+          <div class="mm_menu"><a href="AffliateProduct.php">MarketPlace <i class="fas fa-angle-down nav_icon"></i></a></div>
           <ul class="submenu">
-            <li><a href="home.php">Home</a></li>
+            <li><a href="AffliateProduct.php">Home</a></li>
             <li><a href="dashboard.php">Top product</a></li>
             <li><a href="category.php">Catagory</a></li>
 

@@ -134,6 +134,13 @@ function getUserId($conn, $username)
     $row = mysqli_fetch_assoc($result);
     return $row['id'];
 }
+function getUserName($conn, $id)
+{
+    $sqlq = "SELECT * FROM user WHERE id='$id'";
+    $result = mysqli_query($conn, $sqlq);
+    $row = mysqli_fetch_assoc($result);
+    return $row['username'];
+}
 //upload product
 function addProduct($conn, $username)
 {
@@ -195,6 +202,18 @@ function getAllProduct($conn, $username)
     }
     return $data;
 }
+//get all product by status
+function allProduct($conn,$status)
+{
+    $sqlq = "SELECT * FROM product WHERE status='$status'";
+    $result = mysqli_query($conn, $sqlq);
+    $data = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        $data[] = $row;
+    }
+    return $data;
+}
+
 //delete product
 function removeProduct($conn, $id, $username)
 {

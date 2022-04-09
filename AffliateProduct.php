@@ -5,10 +5,8 @@ $username = $_SESSION['username'];
 if (!isset($username)) {
     header('location:index.php');
 }
+$id = getUserId($conn, $_SESSION['username']);
 
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,6 +26,16 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="css/fontawesome.min.css" />
     <link rel="stylesheet" href="css/newProduct.css">
 
+    <style>
+        .right-line {
+            width: 100%;
+            display: block;
+            height: 25px;
+            margin-top: 3px;
+            background: #777;
+            margin-top: 30px;
+        }
+    </style>
 </head>
 
 <body>
@@ -70,57 +78,44 @@ if (isset($_GET['id'])) {
             </div>
         </div>
     </div>
-    <div class="container mt-5">
 
-        <div style=" position:relative;">
-            <div class="header_text" style="text-align: center; margin:0 auto; font-size:18px; font-weight:bolder;">Product Details </div>
-            <a href="<?php
-            if (isVendor($conn, $username)) {
-                echo 'MyProduct.php';
-            }
-            else{
-                echo 'AffliateProduct.php';
-            }
-            ?> " style="position: absolute; left:0%; top:-5px;" class="btn btn-danger btn-sm mb-1">Go Back</a>
+    <div class="container mt-2">
+        <div class="header_text" style="text-align: center;  margin:0 auto;margin-top:30px; font-size:18px; font-weight:bolder;">All Products</div>
+
+        <div class="form_header">
+            <span class="right-line mb-3"></span>
+
         </div>
-        <span class="right-line"></span>
-        <?php
-        $data = getProduct($conn, $id);
-
-        ?>
         <div class="row">
-            <div class="col-8">
-                <div class="name">
-                    <div style="text-align: center;"> <b class="mb-2"> <?php echo $data['name']; ?></b> </div>
-                    <p style="text-align: justify;"><b>Objective : </b> <?php echo $data['smDescription']; ?> </p>
-                    <p style="text-align: justify;"><b>Description : </b> <?php echo $data['Description']; ?> </p>
-                </div>
-            </div>
-            <div class="col-4">
+            <div class="card-deck">
 
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="product/img/<?php echo $data['imgName'] ?>" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">BY <?php echo $username; ?></h5>
-                        <p class="card-text"> Price <span class="badge badge-warning"><del> <?php echo $data['price'] ?> BDT</del> </span> <span class="badge badge-success"> <?php echo $data['discountPrice'] ?> BDT </span> </p>
-                        <p class="card-text">Category : <?php echo categoryName($conn, $data['categoryId']) ?></p>
-                        <p class="card-text">Category : <?php echo $data['createdTime'] ?></p>
-                        <?php
+                <?php
+                $data = allProduct($conn, "approved");
+                for ($i = 0; $i < count($data); $i++) {
+                    if ($i % 3 == 0 && $i != 0) {
+                        echo '</div>';
+                        echo '</div>';
+                        echo '<div class="row">';
+                        echo '<div class="card-deck">';
+                    }
+                    echo '<div class="card" style="height:450px; margin-top:10px;">';
+                    echo '<img class="card-img-top" style="height:200px" src="product/img/' . $data[$i]['imgName'] . '" alt="Card image cap">';
+                    echo '<div class="card-body">';
+                    echo '<h5 class="card-title"> ' . $data[$i]['name'] . '</h5>';
+                    echo '<h5 class="card-text">BY ' . $username . '</h5>';
+                    echo '<p class="card-text"> Price <span class="badge badge-warning"><del> ' . $data[$i]['price'] . 'BDT</del> </span> <span class="badge badge-success">' . $data[$i]['discountPrice'] . ' BDT </span> </p>';
+                    echo '<p class="card-text">Category :' . categoryName($conn, $data[$i]['categoryId']) . '</p>';
+                    echo '<p class="card-text">CreatedTime :' . $data[$i]['createdTime'] . '</p>';
+                    echo '<a href="productDetails.php?id=' . $data[$i]['id'] . '" class="btn btn-sm btn-info">View</a>';
 
-                        if (isVendor($conn, $username) ) {
-                            echo '<a href="editProduct.php?id=' . $id . '" class="btn btn-sm btn-warning">Edit</a>';
-                            echo '<a href="MyProduct.php?id=' . $id . '" class="btn btn-sm btn-danger ml-2">Delete</a>';
-                        }
-                        ?>
-                    </div>
-                </div>
+                    echo '</div>';
+                    echo '</div>';
+                }
+                ?>
             </div>
 
         </div>
-
     </div>
-
-
 
 
 

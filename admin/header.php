@@ -115,15 +115,11 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="#">
-              <i class="ni ni-time-alarm text-orange"></i>  Menu 3
+            <a class="nav-link " href="products.php">
+              <i class="ni ni-time-alarm text-orange"></i> Products
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link " href="#">
-              <i class="ni ni-paper-diploma text-yellow"></i>  Menu 4
-            </a>
-          </li>          
+                  
          
         </ul>
         <!-- Divider -->
